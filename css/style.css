@@ -1167,3 +1167,38 @@ html {
     gap: 1rem;
     flex-wrap: wrap;
 }
+/* Services Grid Height Fix */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.service-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 480px; /* Фиксированная минимальная высота */
+}
+
+.service-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-features {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.service-price {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--gray-200);
+}
