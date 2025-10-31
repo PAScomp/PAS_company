@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BusinessCorp - Корпоративный сайт</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --corporate-primary: #1a365d;
+            --corporate-secondary: #2d3748;
+            --corporate-accent: #d69e2e;
+            --corporate-gold: #b7791f;
+            --corporate-light: #f7fafc;
+            --corporate-dark: #1a202c;
+            --corporate-gradient: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            --corporate-accent-gradient: linear-gradient(135deg, #d69e2e 0%, #b7791f 100%);
+        }
+
+        /* Стили для корпоративного header */
+        .corporate-header {
+            background: var(--corporate-primary);
+            border-bottom: 3px solid var(--corporate-accent);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .corporate-header .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .corporate-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .corporate-logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--corporate-accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--corporate-primary);
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .corporate-logo h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        .corporate-logo-subtitle {
+            font-size: 0.8rem;
+            color: var(--corporate-accent);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .corporate-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .corporate-nav-link {
+            text-decoration: none;
+            color: rgba(255,255,255,0.8);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .corporate-nav-link:hover,
+        .corporate-nav-link.active {
+            color: white;
+        }
+
+        .corporate-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--corporate-accent);
+            transition: width 0.3s ease;
+        }
+
+        .corporate-nav-link:hover::after,
+        .corporate-nav-link.active::after {
+            width: 100%;
+        }
+
+        .corporate-contact {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-phone {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            background: rgba(214, 158, 46, 0.1);
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid rgba(214, 158, 46, 0.3);
+        }
+
+        /* Основной контент корпоративного сайта */
+        .corporate-hero {
+            background: var(--corporate-gradient);
+            padding: 160px 0 80px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .corporate-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                    radial-gradient(circle at 20% 80%, rgba(214, 158, 46, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(214, 158, 46, 0.05) 0%, transparent 50%);
+        }
+
+        .corporate-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .corporate-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(214, 158, 46, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(214, 158, 46, 0.3);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--corporate-accent);
+        }
+
+        .corporate-hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .corporate-hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .corporate-hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .corporate-cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .corporate-cta-button.primary {
+            background: var(--corporate-accent);
+            color: var(--corporate-primary);
+        }
+
+        .corporate-cta-button.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(214, 158, 46, 0.4);
+        }
+
+        .corporate-cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .corporate-cta-button.secondary:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Секции корпоративного сайта */
+        .corporate-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .corporate-section.dark {
+            background: #f8f9fa;
+        }
+
+        .corporate-section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .corporate-section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--corporate-primary);
+        }
+
+        .corporate-section-subtitle {
+            font-size: 1.125rem;
+            color: var(--corporate-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Сетка услуг */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--corporate-accent-gradient);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: var(--corporate-light);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--corporate-accent);
+            font-size: 1.75rem;
+            border: 2px solid var(--corporate-accent);
+        }
+
+        /* Команда */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .member-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: var(--corporate-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 600;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .member-role {
+            color: var(--corporate-accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Контакты */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background: var(--corporate-accent-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Футер */
+        .corporate-footer {
+            background: var(--corporate-primary);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .back-to-pas {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .back-to-pas a {
+            color: var(--corporate-accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-to-pas a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .corporate-header .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .corporate-nav {
+                gap: 1rem;
+            }
+
+            .corporate-hero-title {
+                font-size: 2.5rem;
+            }
+
+            .corporate-contact {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Корпоративный Header -->
+<header class="corporate-header">
+    <div class="container">
+        <div class="header-content">
+            <a href="#" class="corporate-logo">
+                <div class="corporate-logo-icon">BC</div>
+                <div>
+                    <h1>BusinessCorp</h1>
+                    <p class="corporate-logo-subtitle">Профессиональные решения</p>
+                </div>
+            </a>
+            <nav class="corporate-nav">
+                <a href="#about" class="corporate-nav-link active">О компании</a>
+                <a href="#services" class="corporate-nav-link">Услуги</a>
+                <a href="#team" class="corporate-nav-link">Команда</a>
+                <a href="#projects" class="corporate-nav-link">Проекты</a>
+                <a href="#contacts" class="corporate-nav-link">Контакты</a>
+            </nav>
+            <div class="corporate-contact">
+                <a href="tel:+74951234567" class="contact-phone">
+                    <i class="fas fa-phone"></i>
+                    +7 (495) 123-45-67
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hero секция -->
+<section class="corporate-hero">
+    <div class="container">
+        <div class="corporate-hero-content">
+            <div class="corporate-hero-badge">
+                <i class="fas fa-award"></i>
+                Надежный партнер с 2010 года
+            </div>
+            <h1 class="corporate-hero-title">
+                Профессиональные бизнес-решения
+                <span style="color: var(--corporate-accent);">для вашего роста</span>
+            </h1>
+            <p class="corporate-hero-subtitle">
+                Мы помогаем компаниям достигать стратегических целей через инновационные подходы
+                и проверенные методики управления
+            </p>
+            <div class="corporate-hero-buttons">
+                <a href="#contacts" class="corporate-cta-button primary">
+                    <i class="fas fa-handshake"></i>
+                    Начать сотрудничество
+                </a>
+                <a href="#services" class="corporate-cta-button secondary">
+                    <i class="fas fa-chart-line"></i>
+                    Наши услуги
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- О компании -->
+<section id="about" class="corporate-section">
+    <div class="container">
+        <div class="corporate-section-header">
+            <h2 class="corporate-section-title">О компании BusinessCorp</h2>
+            <p class="corporate-section-subtitle">
+                Более 10 лет мы предоставляем комплексные решения для бизнеса любого масштаба
+            </p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Бизнес-консалтинг</h3>
+                <p>Стратегическое планирование и оптимизация бизнес-процессов для повышения эффективности</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h3>Финансовый анализ</h3>
+                <p>Глубокий анализ финансовых показателей и разработка рекомендаций по улучшению</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Управление проектами</h3>
+                <p>Профессиональное сопровождение проектов от идеи до успешной реализации</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Команда -->
+<section id="team" class="corporate-section dark">
+    <div class="container">
+        <div class="corporate-section-header">
+            <h2 class="corporate-section-title">Наша команда</h2>
+            <p class="corporate-section-subtitle">
+                Профессионалы с многолетним опытом в различных отраслях бизнеса
+            </p>
+        </div>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-photo">
+                    ДИ
+                </div>
+                <h3>Дмитрий Иванов</h3>
+                <p class="member-role">Генеральный директор</p>
+                <p>Опыт руководства - 15 лет. Специализация: стратегическое управление</p>
+            </div>
+            <div class="team-member">
+                <div class="member-photo">
+                    АС
+                </div>
+                <h3>Анна Смирнова</h3>
+                <p class="member-role">Финансовый директор</p>
+                <p>Опыт в финансах - 12 лет. Специализация: финансовый анализ и планирование</p>
+            </div>
+            <div class="team-member">
+                <div class="member-photo">
+                    МК
+                </div>
+                <h3>Максим Козлов</h3>
+                <p class="member-role">Директор по развитию</p>
+                <p>Опыт в управлении проектами - 10 лет. Специализация: бизнес-процессы</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Контакты -->
+<section id="contacts" class="corporate-section">
+    <div class="container">
+        <div class="corporate-section-header">
+            <h2 class="corporate-section-title">Контакты</h2>
+            <p class="corporate-section-subtitle">
+                Свяжитесь с нами для обсуждения вашего проекта
+            </p>
+        </div>
+        <div class="contacts-grid">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Адрес</h3>
+                <p>г. Москва, ул. Тверская, д. 10</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Телефон</h3>
+                <p>+7 (495) 123-45-67</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <p>info@businesscorp.ru</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Время работы</h3>
+                <p>Пн-Пт: 9:00-18:00</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Футер -->
+<footer class="corporate-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="corporate-logo">
+                        <div class="corporate-logo-icon">BC</div>
+                        <div>
+                            <h3>BusinessCorp</h3>
+                            <p>Профессиональные решения</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Мы создаем ценность для бизнеса через инновационные подходы и проверенные методики
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Компания</h4>
+                        <a href="#about">О нас</a>
+                        <a href="#services">Услуги</a>
+                        <a href="#team">Команда</a>
+                        <a href="#projects">Проекты</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Контакты</h4>
+                        <a href="#contacts">Связаться с нами</a>
+                        <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+                        <a href="mailto:info@businesscorp.ru">info@businesscorp.ru</a>
+                    </div>
+                </div>
+            </div>
+            <div class="back-to-pas">
+                <p>Это демонстрация шаблона корпоративного сайта от <a href="../index.html">PAScompany</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

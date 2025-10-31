@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindSpace - Блог о дизайне и творчестве</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --blog-primary: #667EEA;
+            --blog-secondary: #764BA2;
+            --blog-accent: #F093FB;
+            --blog-dark: #2D3748;
+            --blog-light: #F7FAFC;
+            --blog-text: #4A5568;
+            --blog-gradient: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+            --blog-accent-gradient: linear-gradient(135deg, #F093FB 0%, #F5576C 100%);
+        }
+
+        /* Стили для header блога */
+        .blog-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .blog-header .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .blog-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .blog-logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--blog-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .blog-logo h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--blog-dark);
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .blog-logo-subtitle {
+            font-size: 0.85rem;
+            color: var(--blog-primary);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .blog-nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .blog-nav-link {
+            text-decoration: none;
+            color: var(--blog-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+            font-size: 1rem;
+        }
+
+        .blog-nav-link:hover,
+        .blog-nav-link.active {
+            color: var(--blog-primary);
+        }
+
+        .blog-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--blog-accent-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .blog-nav-link:hover::after,
+        .blog-nav-link.active::after {
+            width: 100%;
+        }
+
+        .blog-search {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-box {
+            background: var(--blog-light);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            padding: 10px 15px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--blog-primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-box input {
+            border: none;
+            background: none;
+            outline: none;
+            width: 200px;
+            font-size: 0.9rem;
+            color: var(--blog-dark);
+        }
+
+        .search-box i {
+            color: var(--blog-primary);
+        }
+
+        /* Основной контент блога */
+        .blog-hero {
+            background: linear-gradient(135deg, var(--blog-primary) 0%, var(--blog-secondary) 100%);
+            padding: 160px 0 80px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                    radial-gradient(circle at 20% 80%, rgba(240, 147, 251, 0.2) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+        }
+
+        .blog-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .blog-hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .blog-hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .blog-hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .blog-stat {
+            text-align: center;
+        }
+
+        .blog-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #F093FB 0%, #F5576C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .blog-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Секции блога */
+        .blog-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .blog-section.light {
+            background: var(--blog-light);
+        }
+
+        .blog-section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .blog-section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--blog-dark);
+            position: relative;
+        }
+
+        .blog-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--blog-accent-gradient);
+            border-radius: 2px;
+        }
+
+        .blog-section-subtitle {
+            font-size: 1.2rem;
+            color: var(--blog-text);
+            max-width: 700px;
+            margin: 2rem auto 0;
+            line-height: 1.6;
+        }
+
+        /* Сетка статей */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
+        }
+
+        .article-image {
+            height: 220px;
+            background: linear-gradient(135deg, var(--blog-primary), var(--blog-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                    linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+            animation: blog-shine 3s infinite;
+        }
+
+        .article-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--blog-accent-gradient);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .article-content {
+            padding: 2rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--blog-text);
+        }
+
+        .article-category {
+            color: var(--blog-primary);
+            font-weight: 600;
+        }
+
+        .article-date {
+            color: var(--blog-text);
+            opacity: 0.7;
+        }
+
+        .article-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--blog-dark);
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            color: var(--blog-text);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .article-author {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--blog-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .article-stats {
+            display: flex;
+            gap: 1rem;
+            color: var(--blog-text);
+            font-size: 0.9rem;
+        }
+
+        .article-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Популярные темы */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .topic-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--blog-accent-gradient);
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+        }
+
+        .topic-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: var(--blog-light);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blog-primary);
+            font-size: 2rem;
+            border: 2px solid var(--blog-primary);
+        }
+
+        .topic-count {
+            color: var(--blog-primary);
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Авторы */
+        .authors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .author-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .author-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+        }
+
+        .author-avatar-large {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: var(--blog-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 600;
+            border: 4px solid white;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .author-role {
+            color: var(--blog-primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .author-bio {
+            color: var(--blog-text);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .author-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--blog-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blog-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--blog-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Рассылка */
+        .newsletter {
+            background: var(--blog-gradient);
+            padding: 4rem 2rem;
+            border-radius: 25px;
+            text-align: center;
+            color: white;
+            margin: 4rem 0;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 2rem auto 0;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .newsletter-button {
+            background: var(--blog-accent-gradient);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(240, 147, 251, 0.4);
+        }
+
+        /* Футер блога */
+        .blog-footer {
+            background: var(--blog-dark);
+            color: white;
+            padding: 5rem 0 3rem;
+        }
+
+        .back-to-pas {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .back-to-pas a {
+            color: var(--blog-accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .back-to-pas a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes blog-shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        @media (max-width: 768px) {
+            .blog-header .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .blog-nav {
+                gap: 1.5rem;
+            }
+
+            .blog-hero-title {
+                font-size: 2.5rem;
+            }
+
+            .search-box input {
+                width: 150px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header блога -->
+<header class="blog-header">
+    <div class="container">
+        <div class="header-content">
+            <a href="#" class="blog-logo">
+                <div class="blog-logo-icon">MS</div>
+                <div>
+                    <h1>MindSpace</h1>
+                    <p class="blog-logo-subtitle">БЛОГ О ДИЗАЙНЕ И ТВОРЧЕСТВЕ</p>
+                </div>
+            </a>
+            <nav class="blog-nav">
+                <a href="#articles" class="blog-nav-link active">Статьи</a>
+                <a href="#topics" class="blog-nav-link">Темы</a>
+                <a href="#authors" class="blog-nav-link">Авторы</a>
+                <a href="#about" class="blog-nav-link">О блоге</a>
+                <a href="#contact" class="blog-nav-link">Контакты</a>
+            </nav>
+            <div class="blog-search">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Поиск статей...">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hero секция -->
+<section class="blog-hero">
+    <div class="container">
+        <div class="blog-hero-content">
+            <div class="blog-hero-badge">
+                <i class="fas fa-feather-alt"></i>
+                🎨 Творчество и вдохновение
+            </div>
+            <h1 class="blog-hero-title">
+                Исследуем мир
+                <span style="color: #F093FB;">дизайна</span>
+            </h1>
+            <p class="blog-hero-subtitle">
+                Глубокие статьи, интервью с профессионалами и свежие идеи
+                для творческих людей. Присоединяйтесь к сообществу дизайнеров.
+            </p>
+            <div class="blog-hero-stats">
+                <div class="blog-stat">
+                    <div class="blog-stat-number">250+</div>
+                    <div class="blog-stat-label">Статей</div>
+                </div>
+                <div class="blog-stat">
+                    <div class="blog-stat-number">15K+</div>
+                    <div class="blog-stat-label">Читателей</div>
+                </div>
+                <div class="blog-stat">
+                    <div class="blog-stat-number">50+</div>
+                    <div class="blog-stat-label">Авторов</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Последние статьи -->
+<section id="articles" class="blog-section">
+    <div class="container">
+        <div class="blog-section-header">
+            <h2 class="blog-section-title">Последние статьи</h2>
+            <p class="blog-section-subtitle">
+                Самые свежие и интересные материалы от нашего сообщества
+            </p>
+        </div>
+        <div class="articles-grid">
+            <div class="article-card">
+                <div class="article-image">
+                    <i class="fas fa-palette"></i>
+                    <div class="article-badge">NEW</div>
+                </div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="article-category">ВЕБ-ДИЗАЙН</span>
+                        <span class="article-date">2 дня назад</span>
+                    </div>
+                    <h3 class="article-title">Тренды UI/UX дизайна 2024: что будет актуально</h3>
+                    <p class="article-excerpt">
+                        Анализ главных тенденций в пользовательских интерфейсах:
+                        неоморфизм, стеклянный эффект, анимированные микроинтеракции...
+                    </p>
+                    <div class="article-footer">
+                        <div class="article-author">
+                            <div class="author-avatar">АИ</div>
+                            <span>Анна Иванова</span>
+                        </div>
+                        <div class="article-stats">
+                            <div class="article-stat">
+                                <i class="fas fa-eye"></i> 2.4K
+                            </div>
+                            <div class="article-stat">
+                                <i class="fas fa-comment"></i> 24
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="article-category">MOBILE DESIGN</span>
+                        <span class="article-date">5 дней назад</span>
+                    </div>
+                    <h3 class="article-title">Дизайн мобильных приложений: лучшие практики</h3>
+                    <p class="article-excerpt">
+                        Как создавать интерфейсы, которые пользователи полюбят с первого касания.
+                        Кейсы из реальных проектов и советы от опытных дизайнеров...
+                    </p>
+                    <div class="article-footer">
+                        <div class="article-author">
+                            <div class="author-avatar">МП</div>
+                            <span>Максим Петров</span>
+                        </div>
+                        <div class="article-stats">
+                            <div class="article-stat">
+                                <i class="fas fa-eye"></i> 1.8K
+                            </div>
+                            <div class="article-stat">
+                                <i class="fas fa-comment"></i> 18
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image">
+                    <i class="fas fa-brain"></i>
+                    <div class="article-badge">POPULAR</div>
+                </div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="article-category">ПСИХОЛОГИЯ ДИЗАЙНА</span>
+                        <span class="article-date">1 неделю назад</span>
+                    </div>
+                    <h3 class="article-title">Как цвет влияет на поведение пользователей</h3>
+                    <p class="article-excerpt">
+                        Глубокое погружение в психологию цвета и его влияние на конверсию.
+                        Исследования, примеры и практические рекомендации...
+                    </p>
+                    <div class="article-footer">
+                        <div class="article-author">
+                            <div class="author-avatar">ЕС</div>
+                            <span>Елена Смирнова</span>
+                        </div>
+                        <div class="article-stats">
+                            <div class="article-stat">
+                                <i class="fas fa-eye"></i> 3.2K
+                            </div>
+                            <div class="article-stat">
+                                <i class="fas fa-comment"></i> 42
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Популярные темы -->
+<section id="topics" class="blog-section light">
+    <div class="container">
+        <div class="blog-section-header">
+            <h2 class="blog-section-title">Популярные темы</h2>
+            <p class="blog-section-subtitle">
+                Исследуйте самые обсуждаемые направления в дизайне
+            </p>
+        </div>
+        <div class="topics-grid">
+            <div class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Веб-дизайн</h3>
+                <p>Современные подходы к созданию сайтов и веб-приложений</p>
+                <div class="topic-count">85 статей</div>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Мобильный дизайн</h3>
+                <p>UI/UX для iOS и Android, лучшие практики и тренды</p>
+                <div class="topic-count">67 статей</div>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-pencil-ruler"></i>
+                </div>
+                <h3>Графический дизайн</h3>
+                <p>Брендинг, айдентика и визуальные коммуникации</p>
+                <div class="topic-count">42 статьи</div>
+            </div>
+            <div class="topic-card">
+                <div class="topic-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>UX Research</h3>
+                <p>Исследования пользователей и тестирование интерфейсов</p>
+                <div class="topic-count">38 статей</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Авторы -->
+<section id="authors" class="blog-section">
+    <div class="container">
+        <div class="blog-section-header">
+            <h2 class="blog-section-title">Наши авторы</h2>
+            <p class="blog-section-subtitle">
+                Профессионалы индустрии делятся своим опытом и знаниями
+            </p>
+        </div>
+        <div class="authors-grid">
+            <div class="author-card">
+                <div class="author-avatar-large">АИ</div>
+                <h3>Анна Иванова</h3>
+                <div class="author-role">Lead UI Designer</div>
+                <p class="author-bio">
+                    Специализируется на создании сложных дизайн-систем
+                    и компонентных подходов в веб-дизайне.
+                </p>
+                <div class="author-social">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-dribbble"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="author-card">
+                <div class="author-avatar-large">МП</div>
+                <h3>Максим Петров</h3>
+                <div class="author-role">Product Designer</div>
+                <p class="author-bio">
+                    Эксперт в mobile design и проектировании пользовательских сценариев
+                    для мобильных приложений.
+                </p>
+                <div class="author-social">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-behance"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-medium"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="author-card">
+                <div class="author-avatar-large">ЕС</div>
+                <h3>Елена Смирнова</h3>
+                <div class="author-role">UX Researcher</div>
+                <p class="author-bio">
+                    Проводит глубинные интервью и юзабилити-тестирования,
+                    помогая создавать продукты, ориентированные на пользователя.
+                </p>
+                <div class="author-social">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Рассылка -->
+<section class="blog-section light">
+    <div class="container">
+        <div class="newsletter">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700;">
+                Будьте в курсе
+            </h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem;">
+                Получайте лучшие статьи о дизайне прямо на почту
+            </p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Ваш email" class="newsletter-input" required>
+                <button type="submit" class="newsletter-button">
+                    Подписаться
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Футер -->
+<footer class="blog-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="blog-logo">
+                        <div class="blog-logo-icon">MS</div>
+                        <div>
+                            <h3>MindSpace</h3>
+                            <p>БЛОГ О ДИЗАЙНЕ И ТВОРЧЕСТВЕ</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Сообщество дизайнеров, исследователей и творческих профессионалов
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Разделы</h4>
+                        <a href="#articles">Статьи</a>
+                        <a href="#topics">Темы</a>
+                        <a href="#authors">Авторы</a>
+                        <a href="#about">О блоге</a>
+                        <a href="#contact">Контакты</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Темы</h4>
+                        <a href="#">Веб-дизайн</a>
+                        <a href="#">Мобильный дизайн</a>
+                        <a href="#">Графический дизайн</a>
+                        <a href="#">UX Research</a>
+                        <a href="#">Дизайн-системы</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Соцсети</h4>
+                        <a href="#">Twitter</a>
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Telegram</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">YouTube</a>
+                    </div>
+                </div>
+            </div>
+            <div class="back-to-pas">
+                <p>Это демонстрация шаблона блога о дизайне от <a href="../index.html">PAScompany</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

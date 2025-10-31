@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinimalWear - Швейцарский минимализм</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --swiss-primary: #000000;
+            --swiss-secondary: #FFFFFF;
+            --swiss-accent: #FF3B30;
+            --swiss-gray: #8E8E93;
+            --swiss-light: #F2F2F7;
+            --swiss-dark: #1C1C1E;
+            --swiss-border: #C6C6C8;
+        }
+
+        /* Стили для header в швейцарском стиле */
+        .swiss-header {
+            background: var(--swiss-secondary);
+            border-bottom: 1px solid var(--swiss-border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .swiss-header .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .swiss-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .swiss-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--swiss-primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--swiss-secondary);
+            font-weight: 700;
+            font-size: 14px;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .swiss-logo h1 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--swiss-primary);
+            margin: 0;
+            letter-spacing: -0.5px;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .swiss-nav {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .swiss-nav-link {
+            text-decoration: none;
+            color: var(--swiss-primary);
+            font-weight: 400;
+            transition: all 0.2s ease;
+            position: relative;
+            padding: 8px 0;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        .swiss-nav-link:hover,
+        .swiss-nav-link.active {
+            color: var(--swiss-primary);
+        }
+
+        .swiss-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--swiss-primary);
+            transition: width 0.2s ease;
+        }
+
+        .swiss-nav-link:hover::after,
+        .swiss-nav-link.active::after {
+            width: 100%;
+        }
+
+        .swiss-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .swiss-action {
+            color: var(--swiss-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .swiss-action:hover {
+            color: var(--swiss-gray);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--swiss-accent);
+            color: var(--swiss-secondary);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Основной контент магазина */
+        .swiss-hero {
+            background: var(--swiss-secondary);
+            padding: 140px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .swiss-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .swiss-hero-title {
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .swiss-hero-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            color: var(--swiss-gray);
+            line-height: 1.5;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+
+        .swiss-hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .swiss-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2.5rem;
+            font-size: 0.95rem;
+            font-weight: 400;
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border: none;
+            letter-spacing: 0.5px;
+        }
+
+        .swiss-button.primary {
+            background: var(--swiss-primary);
+            color: var(--swiss-secondary);
+        }
+
+        .swiss-button.primary:hover {
+            background: var(--swiss-dark);
+        }
+
+        .swiss-button.secondary {
+            background: transparent;
+            color: var(--swiss-primary);
+            border: 1px solid var(--swiss-primary);
+        }
+
+        .swiss-button.secondary:hover {
+            background: var(--swiss-primary);
+            color: var(--swiss-secondary);
+        }
+
+        /* Секции магазина */
+        .swiss-section {
+            padding: 80px 0;
+            background: var(--swiss-secondary);
+        }
+
+        .swiss-section.light {
+            background: var(--swiss-light);
+        }
+
+        .swiss-section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .swiss-section-title {
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--swiss-primary);
+            font-family: 'Helvetica Neue', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .swiss-section-subtitle {
+            font-size: 1rem;
+            color: var(--swiss-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        /* Коллекции */
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .collection-card {
+            background: var(--swiss-secondary);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .collection-image {
+            height: 400px;
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--swiss-gray);
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .collection-info {
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        .collection-name {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            color: var(--swiss-primary);
+            letter-spacing: 0.3px;
+        }
+
+        .collection-price {
+            font-size: 0.95rem;
+            color: var(--swiss-gray);
+            font-weight: 300;
+        }
+
+        /* Категории */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: var(--swiss-secondary);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            border: 1px solid var(--swiss-border);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            border-color: var(--swiss-primary);
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            color: var(--swiss-primary);
+            margin-bottom: 1rem;
+        }
+
+        .category-name {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--swiss-primary);
+            letter-spacing: 0.3px;
+        }
+
+        /* Преимущества */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background: var(--swiss-primary);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--swiss-secondary);
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--swiss-primary);
+            letter-spacing: 0.3px;
+        }
+
+        .feature-description {
+            font-size: 0.9rem;
+            color: var(--swiss-gray);
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        /* Новые поступления */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--swiss-secondary);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 350px;
+            background: linear-gradient(135deg, #f8f8f8, #e8e8e8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--swiss-gray);
+            font-size: 2.5rem;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--swiss-accent);
+            color: var(--swiss-secondary);
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .product-info {
+            padding: 0 0.5rem;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            color: var(--swiss-primary);
+            letter-spacing: 0.3px;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .current-price {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--swiss-primary);
+        }
+
+        .original-price {
+            font-size: 0.9rem;
+            color: var(--swiss-gray);
+            text-decoration: line-through;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .add-to-cart {
+            flex: 1;
+            background: var(--swiss-primary);
+            color: var(--swiss-secondary);
+            border: none;
+            padding: 0.8rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .add-to-cart:hover {
+            background: var(--swiss-dark);
+        }
+
+        .wishlist {
+            background: transparent;
+            border: 1px solid var(--swiss-border);
+            color: var(--swiss-primary);
+            padding: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .wishlist:hover {
+            border-color: var(--swiss-primary);
+        }
+
+        /* Футер */
+        .swiss-footer {
+            background: var(--swiss-primary);
+            color: var(--swiss-secondary);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--swiss-secondary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--swiss-primary);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .footer-description {
+            color: var(--swiss-gray);
+            line-height: 1.6;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: var(--swiss-gray);
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            transition: color 0.2s ease;
+            font-weight: 300;
+        }
+
+        .footer-column a:hover {
+            color: var(--swiss-secondary);
+        }
+
+        .back-to-pas {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .back-to-pas a {
+            color: var(--swiss-secondary);
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        .back-to-pas a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .swiss-header .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .swiss-nav {
+                gap: 1.5rem;
+            }
+
+            .swiss-hero-title {
+                font-size: 2.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header в швейцарском стиле -->
+<header class="swiss-header">
+    <div class="container">
+        <div class="header-content">
+            <a href="#" class="swiss-logo">
+                <div class="swiss-logo-icon">MW</div>
+                <div>
+                    <h1>MinimalWear</h1>
+                </div>
+            </a>
+            <nav class="swiss-nav">
+                <a href="#new" class="swiss-nav-link">Новое</a>
+                <a href="#collections" class="swiss-nav-link active">Коллекции</a>
+                <a href="#men" class="swiss-nav-link">Мужское</a>
+                <a href="#women" class="swiss-nav-link">Женское</a>
+                <a href="#about" class="swiss-nav-link">О бренде</a>
+            </nav>
+            <div class="swiss-actions">
+                <a href="#" class="swiss-action">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a href="#" class="swiss-action">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="#" class="swiss-action">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">3</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hero секция -->
+<section class="swiss-hero">
+    <div class="container">
+        <div class="swiss-hero-content">
+            <h1 class="swiss-hero-title">ЭССЕНЦИЯ СТИЛЯ</h1>
+            <p class="swiss-hero-subtitle">
+                Швейцарский минимализм в каждой детали. Качественные материалы,
+                безупречный крой и вневременной дизайн.
+            </p>
+            <div class="swiss-hero-buttons">
+                <a href="#collections" class="swiss-button primary">
+                    Смотреть коллекцию
+                </a>
+                <a href="#new" class="swiss-button secondary">
+                    Новые поступления
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Категории -->
+<section class="swiss-section light">
+    <div class="container">
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <div class="category-name">Верхняя одежда</div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-socks"></i>
+                </div>
+                <div class="category-name">Базовые вещи</div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-ring"></i>
+                </div>
+                <div class="category-name">Аксессуары</div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-shoe-prints"></i>
+                </div>
+                <div class="category-name">Обувь</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Новые поступления -->
+<section id="new" class="swiss-section">
+    <div class="container">
+        <div class="swiss-section-header">
+            <h2 class="swiss-section-title">Новые поступления</h2>
+            <p class="swiss-section-subtitle">
+                Свежие модели из текущей коллекции
+            </p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <i class="fas fa-tshirt"></i>
+                    <div class="product-badge">NEW</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Оверсайз футболка</h3>
+                    <div class="product-price">
+                        <span class="current-price">4 900 ₽</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">В корзину</button>
+                        <button class="wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <i class="fas fa-vest"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Шерстяной кардиган</h3>
+                    <div class="product-price">
+                        <span class="current-price">12 900 ₽</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">В корзину</button>
+                        <button class="wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <i class="fas fa-pants"></i>
+                    <div class="product-badge">SALE</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Прямые брюки</h3>
+                    <div class="product-price">
+                        <span class="current-price">8 900 ₽</span>
+                        <span class="original-price">11 900 ₽</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">В корзину</button>
+                        <button class="wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <i class="fas fa-hat-cowboy"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Шерстяная шапка</h3>
+                    <div class="product-price">
+                        <span class="current-price">3 900 ₽</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart">В корзину</button>
+                        <button class="wishlist">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Коллекции -->
+<section id="collections" class="swiss-section light">
+    <div class="container">
+        <div class="swiss-section-header">
+            <h2 class="swiss-section-title">Коллекции</h2>
+            <p class="swiss-section-subtitle">
+                Капсульные коллекции для любого сезона
+            </p>
+        </div>
+        <div class="collections-grid">
+            <div class="collection-card">
+                <div class="collection-image">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="collection-info">
+                    <h3 class="collection-name">Летняя капсула</h3>
+                    <div class="collection-price">От 3 900 ₽</div>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="collection-image">
+                    <i class="fas fa-snowflake"></i>
+                </div>
+                <div class="collection-info">
+                    <h3 class="collection-name">Зимняя коллекция</h3>
+                    <div class="collection-price">От 7 900 ₽</div>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="collection-image">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="collection-info">
+                    <h3 class="collection-name">Осень-Весна</h3>
+                    <div class="collection-price">От 5 900 ₽</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Преимущества -->
+<section class="swiss-section">
+    <div class="container">
+        <div class="swiss-section-header">
+            <h2 class="swiss-section-title">Почему MinimalWear</h2>
+            <p class="swiss-section-subtitle">
+                Наши принципы и подход к созданию одежды
+            </p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-feather"></i>
+                </div>
+                <h3 class="feature-title">Качественные материалы</h3>
+                <p class="feature-description">
+                    Используем только натуральные ткани и проверенные материалы
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-ruler-combined"></i>
+                </div>
+                <h3 class="feature-title">Идеальный крой</h3>
+                <p class="feature-description">
+                    Продуманные лекала и внимание к деталям в каждом изделии
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <h3 class="feature-title">Устойчивое производство</h3>
+                <p class="feature-description">
+                    Заботимся об экологии и этичном подходе к производству
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3 class="feature-title">Бесплатная доставка</h3>
+                <p class="feature-description">
+                    Быстрая доставка по всему миру при заказе от 10 000 ₽
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Футер -->
+<footer class="swiss-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">MW</div>
+                    <div>
+                        <h3 style="color: var(--swiss-secondary); margin: 0;">MinimalWear</h3>
+                    </div>
+                </div>
+                <p class="footer-description">
+                    Швейцарский минимализм в одежде. Качество, простота и вневременной стиль.
+                </p>
+            </div>
+            <div class="footer-column">
+                <h4>Магазин</h4>
+                <a href="#new">Новое</a>
+                <a href="#collections">Коллекции</a>
+                <a href="#men">Мужское</a>
+                <a href="#women">Женское</a>
+                <a href="#sale">Распродажа</a>
+            </div>
+            <div class="footer-column">
+                <h4>Информация</h4>
+                <a href="#about">О бренде</a>
+                <a href="#delivery">Доставка</a>
+                <a href="#returns">Возврат</a>
+                <a href="#size">Размерная сетка</a>
+                <a href="#care">Уход за вещами</a>
+            </div>
+            <div class="footer-column">
+                <h4>Контакты</h4>
+                <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+                <a href="mailto:hello@minimalwear.ru">hello@minimalwear.ru</a>
+                <a href="#">Москва, ул. Петровка, 15</a>
+            </div>
+        </div>
+        <div class="back-to-pas">
+            <p>Это демонстрация шаблона интернет-магазина в швейцарском стиле от <a href="../index.html">PAScompany</a></p>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

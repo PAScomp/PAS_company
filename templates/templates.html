@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шаблоны сайтов - PAScompany</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .templates-hero {
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: var(--primary-white);
+        }
+
+        .templates-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--accent-purple);
+            background: transparent;
+            color: var(--accent-purple);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--accent-purple);
+            color: var(--primary-white);
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .template-card {
+            background: var(--primary-white);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-200);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .template-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .template-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .template-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .template-card:hover .template-image img {
+            transform: scale(1.05);
+        }
+
+        .template-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(124, 58, 237, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .template-card:hover .template-overlay {
+            opacity: 1;
+        }
+
+        .template-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .template-btn {
+            padding: 12px 24px;
+            background: var(--primary-white);
+            color: var(--accent-purple);
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .template-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .template-content {
+            padding: 2rem;
+        }
+
+        .template-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-black);
+        }
+
+        .template-description {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .template-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .template-feature {
+            background: var(--gray-100);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+
+        .template-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-black);
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: var(--gray-400);
+            margin-right: 0.5rem;
+        }
+
+        .discount {
+            background: var(--accent-green);
+            color: var(--primary-white);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .templates-cta {
+            text-align: center;
+            background: var(--gray-50);
+            padding: 4rem 2rem;
+            border-radius: var(--border-radius-lg);
+            margin: 4rem 0;
+        }
+
+        .coming-soon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-orange);
+            color: var(--primary-white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">PAS</div>
+                <div>
+                    <h1>PAScompany</h1>
+                    <p class="logo-subtitle">Молодая команда разработчиков</p>
+                </div>
+            </a>
+            <nav class="nav">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../index.html#about" class="nav-link">О нас</a>
+                <a href="../index.html#team" class="nav-link">Команда</a>
+                <a href="../index.html#services" class="nav-link">Услуги</a>
+                <a href="templates.html" class="nav-link active">Шаблоны сайтов</a>
+                <a href="../index.html#contacts" class="nav-link">Контакты</a>
+            </nav>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="templates-hero">
+    <div class="container">
+        <h1 class="hero-title">
+            <span class="gradient-text">Готовые шаблоны</span>
+            сайтов
+        </h1>
+        <p class="hero-subtitle">Выберите подходящий шаблон и получите сайт за 1-2 дня. Быстро, качественно, недорого!</p>
+    </div>
+</section>
+
+<section class="templates-section">
+    <div class="container">
+        <div class="templates-filter">
+            <button class="filter-btn active" data-filter="all">Все шаблоны</button>
+            <button class="filter-btn" data-filter="landing">Лендинги</button>
+            <button class="filter-btn" data-filter="corporate">Корпоративные</button>
+            <button class="filter-btn" data-filter="portfolio">Портфолио</button>
+            <button class="filter-btn" data-filter="ecommerce">Магазины</button>
+            <button class="filter-btn" data-filter="blog">Блоги</button>
+        </div>
+
+        <div class="templates-grid">
+            <!-- Шаблон 1 -->
+            <a href="template-startup.html" class="template-card" data-category="landing">
+                <div class="template-image">
+                    <img src="../images/templates/startup-landing.JPG" alt="Стартап лендинг">
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                                <span class="template-btn">
+                                    <i class="fas fa-eye"></i> Подробнее
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">Стартап лендинг</h3>
+                    <p class="template-description">Современный лендинг для IT-стартапов с анимациями и формой захвата лидов.</p>
+                    <div class="template-features">
+                        <span class="template-feature">Адаптивный</span>
+                        <span class="template-feature">Анимации</span>
+                        <span class="template-feature">SEO-оптимизированный</span>
+                    </div>
+                    <div class="template-price">
+                        <div class="price">
+                            <span class="original-price">25 000 ₽</span>
+                            15 000 ₽
+                        </div>
+                        <span class="discount">-40%</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Шаблон 2 -->
+            <a href="template-corporate.html" class="template-card" data-category="corporate">
+                <div class="template-image">
+                    <img src="../images/templates/corporate-site.jpg" alt="Корпоративный сайт">
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                                <span class="template-btn">
+                                    <i class="fas fa-eye"></i> Подробнее
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">Корпоративный сайт</h3>
+                    <p class="template-description">Профессиональный сайт для компаний с блогом, услугами и контактами.</p>
+                    <div class="template-features">
+                        <span class="template-feature">Многостраничный</span>
+                        <span class="template-feature">Блог</span>
+                        <span class="template-feature">Админ-панель</span>
+                    </div>
+                    <div class="template-price">
+                        <div class="price">35 000 ₽</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Шаблон 3 -->
+            <a href="template-portfolio.html" class="template-card" data-category="portfolio">
+                <div class="template-image">
+                    <img src="../images/templates/designer-portfolio.jpg" alt="Портфолио дизайнера">
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                                <span class="template-btn">
+                                    <i class="fas fa-eye"></i> Подробнее
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">Портфолио дизайнера</h3>
+                    <p class="template-description">Элегантный шаблон для творческих профессионалов с галереей работ.</p>
+                    <div class="template-features">
+                        <span class="template-feature">Галерея</span>
+                        <span class="template-feature">Фильтры</span>
+                        <span class="template-feature">Контактная форма</span>
+                    </div>
+                    <div class="template-price">
+                        <div class="price">
+                            <span class="original-price">20 000 ₽</span>
+                            12 000 ₽
+                        </div>
+                        <span class="discount">-40%</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Шаблон 4 -->
+            <a href="template-ecommerce.html" class="template-card" data-category="ecommerce">
+                <div class="template-image">
+                    <img src="../images/templates/ecommerce.jpg" alt="Интернет-магазин">
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                                <span class="template-btn">
+                                    <i class="fas fa-eye"></i> Подробнее
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">Интернет-магазин</h3>
+                    <p class="template-description">Полнофункциональный магазин с корзиной, фильтрами и системой оплаты.</p>
+                    <div class="template-features">
+                        <span class="template-feature">Корзина</span>
+                        <span class="template-feature">Фильтры</span>
+                        <span class="template-feature">Оплата онлайн</span>
+                    </div>
+                    <div class="template-price">
+                        <div class="price">45 000 ₽</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Шаблон 5 -->
+            <a href="template-blog.html" class="template-card" data-category="blog">
+                <div class="template-image">
+                    <img src="../images/templates/blog-template.jpg" alt="Блог платформа">
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                                <span class="template-btn">
+                                    <i class="fas fa-eye"></i> Подробнее
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">Блог платформа</h3>
+                    <p class="template-description">Современный блог с системой комментариев, тегами и поиском.</p>
+                    <div class="template-features">
+                        <span class="template-feature">Комментарии</span>
+                        <span class="template-feature">Поиск</span>
+                        <span class="template-feature">RSS</span>
+                    </div>
+                    <div class="template-price">
+                        <div class="price">25 000 ₽</div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Шаблон 6 -->
+            <div class="template-card" data-category="landing">
+                <div class="template-image">
+                    <img src="../images/templates/product-landing.jpg" alt="Продуктовый лендинг">
+                    <div class="coming-soon">Скоро</div>
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                                <span class="template-btn">
+                                    <i class="fas fa-clock"></i> Скоро
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-content">
+                    <h3 class="template-title">Продуктовый лендинг</h3>
+                    <p class="template-description">Продающий лендинг для цифровых продуктов и SaaS-решений.</p>
+                    <div class="template-features">
+                        <span class="template-feature">A/B тестирование</span>
+                        <span class="template-feature">Аналитика</span>
+                        <span class="template-feature">Интеграции</span>
+                    </div>
+                    <div class="template-price">
+                        <div class="price">30 000 ₽</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="templates-cta">
+            <h2>Не нашли подходящий шаблон?</h2>
+            <p>Мы можем создать индивидуальный дизайн именно для вашего бизнеса</p>
+            <div class="hero-buttons">
+                <a href="../index.html#contacts" class="cta-button primary">
+                    <i class="fas fa-calendar-check"></i>
+                    Обсудить проект
+                </a>
+                <a href="../index.html#services" class="cta-button secondary">
+                    <i class="fas fa-code"></i>
+                    Наши услуги
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">PAS</div>
+                        <div>
+                            <h3>PAScompany</h3>
+                            <p>Молодая команда разработчиков</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Создаём инновационные решения, которые выделяют ваш бизнес. Готовы к любым смелым идеям!</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Компания</h4>
+                        <a href="../index.html#about">О нас</a>
+                        <a href="../index.html#team">Команда</a>
+                        <a href="../index.html#services">Услуги</a>
+                        <a href="templates.html">Шаблоны</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Контакты</h4>
+                        <a href="../index.html#contacts">Связаться с нами</a>
+                        <a href="tel:+79204347038">+7 920 434 70 38</a>
+                        <a href="mailto:pas_comp@mail.ru">pas_comp@mail.ru</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-text">
+                    <p>&copy; 2024 PAScompany. Молодая и амбициозная команда.</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://vk.com/aweryn03" target="_blank" title="ВКонтакте" class="social-link">
+                        <i class="fab fa-vk"></i>
+                    </a>
+                    <a href="https://github.com/PetrenLine" target="_blank" title="GitHub" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://t.me/PAS_comp" target="_blank" title="Telegram" class="social-link">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+    // Фильтрация шаблонов
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const templateCards = document.querySelectorAll('.template-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.getAttribute('data-filter');
+
+                templateCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Анимация появления карточек
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        templateCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    });
+</script>
+</body>
+</html>

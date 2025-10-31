@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnovateTech - Стартап лендинг</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --startup-primary: #00D4FF;
+            --startup-secondary: #0099CC;
+            --startup-accent: #FF6B6B;
+            --startup-dark: #0A0F2D;
+            --startup-light: #F8FAFF;
+            --startup-gradient: linear-gradient(135deg, #00D4FF 0%, #0099CC 100%);
+            --startup-gradient-accent: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+        }
+
+        /* Стили для header стартапа */
+        .startup-header {
+            background: rgba(10, 15, 45, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .startup-header .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .startup-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .startup-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--startup-gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .startup-logo h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            margin: 0;
+            letter-spacing: -0.025em;
+        }
+
+        .startup-logo-subtitle {
+            font-size: 0.8rem;
+            color: var(--startup-primary);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .startup-nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .startup-nav-link {
+            text-decoration: none;
+            color: rgba(255,255,255,0.8);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .startup-nav-link:hover,
+        .startup-nav-link.active {
+            color: white;
+        }
+
+        .startup-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--startup-primary);
+            transition: width 0.3s ease;
+        }
+
+        .startup-nav-link:hover::after,
+        .startup-nav-link.active::after {
+            width: 100%;
+        }
+
+        .startup-cta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .demo-button {
+            background: transparent;
+            color: var(--startup-primary);
+            border: 2px solid var(--startup-primary);
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .demo-button:hover {
+            background: var(--startup-primary);
+            color: var(--startup-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Основной контент стартапа */
+        .startup-hero {
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%);
+            padding: 160px 0 100px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .startup-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                    radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.05) 0%, transparent 50%);
+        }
+
+        .startup-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .startup-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 212, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--startup-primary);
+        }
+
+        .startup-hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+        }
+
+        .gradient-text {
+            background: var(--startup-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .startup-hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .startup-hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .startup-cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .startup-cta-button.primary {
+            background: var(--startup-primary);
+            color: var(--startup-dark);
+        }
+
+        .startup-cta-button.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .startup-cta-button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .startup-cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .startup-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .startup-stat {
+            text-align: center;
+        }
+
+        .startup-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: var(--startup-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .startup-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Секции стартапа */
+        .startup-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .startup-section.dark {
+            background: #0A0F2D;
+            color: white;
+        }
+
+        .startup-section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .startup-section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--startup-dark);
+        }
+
+        .startup-section.dark .startup-section-title {
+            color: white;
+        }
+
+        .startup-section-subtitle {
+            font-size: 1.25rem;
+            color: var(--startup-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .startup-section.dark .startup-section-subtitle {
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Особенности продукта */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--startup-gradient);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.2);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--startup-gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Как это работает */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--startup-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        /* Отзывы */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .testimonial-text {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--startup-gradient);
+        }
+
+        /* CTA секция */
+        .startup-cta-section {
+            background: var(--startup-gradient);
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        /* Футер стартапа */
+        .startup-footer {
+            background: #0A0F2D;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .back-to-pas {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .back-to-pas a {
+            color: var(--startup-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-to-pas a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .startup-header .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .startup-nav {
+                gap: 1.5rem;
+            }
+
+            .startup-hero-title {
+                font-size: 2.5rem;
+            }
+
+            .startup-hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Стартап Header -->
+<header class="startup-header">
+    <div class="container">
+        <div class="header-content">
+            <a href="#" class="startup-logo">
+                <div class="startup-logo-icon">IT</div>
+                <div>
+                    <h1>InnovateTech</h1>
+                    <p class="startup-logo-subtitle">AI-Powered Solutions</p>
+                </div>
+            </a>
+            <nav class="startup-nav">
+                <a href="#features" class="startup-nav-link">Возможности</a>
+                <a href="#how-it-works" class="startup-nav-link">Как работает</a>
+                <a href="#pricing" class="startup-nav-link">Цены</a>
+                <a href="#testimonials" class="startup-nav-link">Отзывы</a>
+                <a href="#faq" class="startup-nav-link">FAQ</a>
+            </nav>
+            <div class="startup-cta">
+                <a href="#demo" class="demo-button">
+                    <i class="fas fa-play-circle"></i>
+                    Демо
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hero секция -->
+<section class="startup-hero">
+    <div class="container">
+        <div class="startup-hero-content">
+            <div class="startup-hero-badge">
+                <i class="fas fa-rocket"></i>
+                🚀 Запуск новой AI-платформы
+            </div>
+            <h1 class="startup-hero-title">
+                <span class="gradient-text">Искусственный интеллект</span>
+                для вашего бизнеса
+            </h1>
+            <p class="startup-hero-subtitle">
+                Automate your workflow with our cutting-edge AI platform.
+                Boost productivity, reduce costs, and stay ahead of the competition.
+            </p>
+            <div class="startup-hero-buttons">
+                <a href="#pricing" class="startup-cta-button primary">
+                    <i class="fas fa-play"></i>
+                    Начать бесплатно
+                </a>
+                <a href="#demo" class="startup-cta-button secondary">
+                    <i class="fas fa-video"></i>
+                    Смотреть демо
+                </a>
+            </div>
+            <div class="startup-stats">
+                <div class="startup-stat">
+                    <div class="startup-stat-number">98%</div>
+                    <div class="startup-stat-label">Точность AI</div>
+                </div>
+                <div class="startup-stat">
+                    <div class="startup-stat-number">5x</div>
+                    <div class="startup-stat-label">Рост продуктивности</div>
+                </div>
+                <div class="startup-stat">
+                    <div class="startup-stat-number">24/7</div>
+                    <div class="startup-stat-label">Работа платформы</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Возможности -->
+<section id="features" class="startup-section">
+    <div class="container">
+        <div class="startup-section-header">
+            <h2 class="startup-section-title">Мощные возможности</h2>
+            <p class="startup-section-subtitle">
+                Все, что нужно для автоматизации вашего бизнеса в одной платформе
+            </p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>AI Аналитика</h3>
+                <p>Глубокий анализ данных с помощью машинного обучения для точных прогнозов</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>Автоматизация</h3>
+                <p>Автоматизируйте рутинные задачи и сосредоточьтесь на стратегических целях</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Реальное время</h3>
+                <p>Мгновенная обработка данных и обновление аналитики в реальном времени</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Как это работает -->
+<section id="how-it-works" class="startup-section dark">
+    <div class="container">
+        <div class="startup-section-header">
+            <h2 class="startup-section-title">Как это работает</h2>
+            <p class="startup-section-subtitle">
+                Простой процесс интеграции и начала работы
+            </p>
+        </div>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Регистрация</h3>
+                <p>Создайте аккаунт за 2 минуты</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Интеграция</h3>
+                <p>Подключите ваши данные и системы</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Настройка</h3>
+                <p>Настройте AI под ваши задачи</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Результаты</h3>
+                <p>Получайте аналитику и автоматизацию</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Отзывы -->
+<section id="testimonials" class="startup-section dark">
+    <div class="container">
+        <div class="startup-section-header">
+            <h2 class="startup-section-title">Что говорят клиенты</h2>
+            <p class="startup-section-subtitle">
+                Присоединяйтесь к 1000+ компаний, которые уже используют нашу платформу
+            </p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "InnovateTech полностью изменил наш подход к аналитике. Экономия времени - 70%!"
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div>
+                        <h4>Алексей Петров</h4>
+                        <p>CTO, TechGrowth</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "Внедрение заняло всего 2 дня, а результаты превзошли все ожидания. Рекомендую!"
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div>
+                        <h4>Мария Иванова</h4>
+                        <p>CEO, DataDrive</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA секция -->
+<section class="startup-cta-section">
+    <div class="container">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 800;">
+            Готовы к автоматизации?
+        </h2>
+        <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9;">
+            Начните бесплатно сегодня и увидите результаты завтра
+        </p>
+        <div class="startup-hero-buttons">
+            <a href="#pricing" class="startup-cta-button" style="background: white; color: var(--startup-dark);">
+                <i class="fas fa-play"></i>
+                Начать бесплатно
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Футер -->
+<footer class="startup-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="startup-logo">
+                        <div class="startup-logo-icon">IT</div>
+                        <div>
+                            <h3>InnovateTech</h3>
+                            <p>AI-Powered Solutions</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Мы создаем будущее автоматизации с помощью искусственного интеллекта
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Продукт</h4>
+                        <a href="#features">Возможности</a>
+                        <a href="#pricing">Цены</a>
+                        <a href="#demo">Демо</a>
+                        <a href="#integrations">Интеграции</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Компания</h4>
+                        <a href="#about">О нас</a>
+                        <a href="#careers">Карьера</a>
+                        <a href="#blog">Блог</a>
+                        <a href="#contact">Контакты</a>
+                    </div>
+                </div>
+            </div>
+            <div class="back-to-pas">
+                <p>Это демонстрация шаблона стартап лендинга от <a href="../index.html">PAScompany</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

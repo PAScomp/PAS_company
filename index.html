@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAScompany - Молодая команда разработчиков</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+            padding: 80px 0;
+            text-align: center;
+            color: var(--primary-white);
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button.large {
+            padding: 1.25rem 2.5rem;
+            font-size: 1.125rem;
+        }
+    </style>
+</head>
+<body>
+<!-- Шапка (Header) -->
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">PAS</div>
+                <div>
+                    <h1>PAScompany</h1>
+                    <p class="logo-subtitle">Молодая команда разработчиков</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link active">Главная</a>
+                <a href="#about" class="nav-link">О нас</a>
+                <a href="#team" class="nav-link">Команда</a>
+                <a href="#services" class="nav-link">Услуги</a>
+                <a href="templates/templates.html" class="nav-link">Шаблоны сайтов</a>
+                <a href="#contacts" class="nav-link">Контакты</a>
+            </nav>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Главный экран (Hero) -->
+<section id="home" class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🚀 Молодая и амбициозная команда</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="gradient-text">Современная</span>
+                разработка ПО
+            </h1>
+            <p class="hero-subtitle">Создаём инновационные решения, которые выделяют ваш бизнес. Быстро, качественно, с современным подходом</p>
+            <div class="hero-buttons">
+                <button class="cta-button primary" onclick="scrollToContacts()">
+                    <i class="fas fa-calendar-check"></i>
+                    Обсудить проект
+                </button>
+                <button class="cta-button secondary" onclick="scrollToTeam()">
+                    <i class="fas fa-users"></i>
+                    Наша команда
+                </button>
+                <a href="templates/templates.html" class="cta-button accent">
+                    <i class="fas fa-palette"></i>
+                    Готовые шаблоны
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Успешных проектов</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Современные технологии</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Поддержка и развитие</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+</section>
+
+<!-- О нас -->
+<section id="about" class="about">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">О нас</h2>
+            <p class="section-subtitle">Молодая, амбициозная команда разработчиков</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p class="lead">
+                    <strong>PAScompany</strong> — это не просто студия разработки, а команда единомышленников,
+                    которые горят своим делом. Мы молоды, амбициозны и используем самые современные технологии
+                    для создания продуктов, которые меняют мир к лучшему.
+                </p>
+                <div class="advantages-grid">
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Современный подход</h3>
+                        <p>Используем актуальные технологии и методологии разработки</p>
+                    </div>
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Быстрый старт</h3>
+                        <p>Беремся за сложные задачи и быстро выдаем результат</p>
+                    </div>
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Инновации</h3>
+                        <p>Предлагаем нестандартные решения для вашего бизнеса</p>
+                    </div>
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Преданность делу</h3>
+                        <p>Мы действительно любим то, что делаем</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Баннер смелых идей -->
+<section class="ideas-banner">
+    <div class="container">
+        <div class="ideas-content">
+            <div class="ideas-text">
+                <h2>Готовы к любым смелым идеям!</h2>
+                <p>Не нашли нужную услугу? У вас нестандартная задача? Мы любим вызовы и готовы воплотить даже самые смелые проекты. Обсудим?</p>
+                <div class="ideas-buttons">
+                    <button class="cta-button primary" onclick="scrollToContacts()">
+                        <i class="fas fa-lightbulb"></i>
+                        Обсудить идею
+                    </button>
+                    <a href="templates/templates.html" class="cta-button secondary">
+                        <i class="fas fa-palette"></i>
+                        Посмотреть шаблоны
+                    </a>
+                </div>
+            </div>
+            <div class="ideas-visual">
+                <div class="idea-item">
+                    <i class="fas fa-brain"></i>
+                    <span>Инновации</span>
+                </div>
+                <div class="idea-item">
+                    <i class="fas fa-rocket"></i>
+                    <span>Стартапы</span>
+                </div>
+                <div class="idea-item">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <span>Сложные задачи</span>
+                </div>
+                <div class="idea-item">
+                    <i class="fas fa-magic"></i>
+                    <span>Творчество</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Команда -->
+<section id="team" class="team">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Наша команда</h2>
+            <p class="section-subtitle">Три амбициозных разработчика, которые горят своим делом</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-photo">
+                    <img src="images/team/oleg.jpg" alt="Олег" class="team-img" onerror="this.style.display='none'">
+                    <div class="gradient-avatar oleg-avatar">
+                        <span>ОЛ</span>
+                    </div>
+                </div>
+                <h3>Олег</h3>
+                <p class="team-role">Главный разработчик</p>
+                <p class="team-bio">Технический гуру с глубокими знаниями архитектуры и любовью к сложным задачам. Отвечает за техническое качество всех проектов.</p>
+                <div class="team-skills">
+                    <span>Архитектура</span>
+                    <span>Системный дизайн</span>
+                    <span>Code Review</span>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-photo">
+                    <img src="images/team/alexander.jpg" alt="Александр" class="team-img" onerror="this.style.display='none'">
+                    <div class="gradient-avatar alexander-avatar">
+                        <span>АЛ</span>
+                    </div>
+                </div>
+                <h3>Александр</h3>
+                <p class="team-role">Разработчик</p>
+                <p class="team-bio">Full-stack разработчик с страстью к созданию идеального пользовательского опыта. Всегда в курсе последних тенденций.</p>
+                <div class="team-skills">
+                    <span>Frontend</span>
+                    <span>Backend</span>
+                    <span>UI/UX</span>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-photo">
+                    <img src="images/team/artem.jpg" alt="Артём" class="team-img" onerror="this.style.display='none'">
+                    <div class="gradient-avatar artem-avatar">
+                        <span>АР</span>
+                    </div>
+                </div>
+                <h3>Артём</h3>
+                <p class="team-role">Менеджер & Разработчик</p>
+                <p class="team-bio">Связующее звено между клиентами и командой. Умеет слушать, понимать потребности и находить оптимальные решения.</p>
+                <div class="team-skills">
+                    <span>Project Management</span>
+                    <span>Коммуникация</span>
+                    <span>Бизнес-анализ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Услуги -->
+<section id="services" class="services">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Наши услуги</h2>
+            <p class="section-subtitle">Полный цикл разработки на современных технологиях</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Разработка сайтов</h3>
+                <p>Современные сайты любой сложности - от лендингов до корпоративных порталов с системой управления</p>
+                <div class="service-features">
+                    <span>Лендинги</span>
+                    <span>Корпоративные сайты</span>
+                    <span>Интернет-магазины</span>
+                </div>
+                <p class="service-price">от 50 000 ₽</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Веб-приложения</h3>
+                <p>Современные веб-приложения на React, Vue, Next.js с безупречным UI/UX</p>
+                <div class="service-features">
+                    <span>SPA/PWA</span>
+                    <span>Modern UI</span>
+                    <span>High Performance</span>
+                </div>
+                <p class="service-price">от 120 000 ₽</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Мобильные приложения</h3>
+                <p>Кроссплатформенные и нативные приложения для iOS и Android</p>
+                <div class="service-features">
+                    <span>React Native</span>
+                    <span>Flutter</span>
+                    <span>Native</span>
+                </div>
+                <p class="service-price">от 150 000 ₽</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3>Backend разработка</h3>
+                <p>Масштабируемые backend-решения на Node.js, Python и современных фреймворках</p>
+                <div class="service-features">
+                    <span>REST API</span>
+                    <span>GraphQL</span>
+                    <span>Microservices</span>
+                </div>
+                <p class="service-price">от 100 000 ₽</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Нужен сайт быстро и недорого?</h2>
+            <p>Выберите готовый шаблон и получите сайт за 1-2 дня!</p>
+            <div class="cta-buttons">
+                <a href="templates/templates.html" class="cta-button primary large">
+                    <i class="fas fa-palette"></i>
+                    Выбрать шаблон
+                </a>
+                <a href="#contacts" class="cta-button secondary">
+                    <i class="fas fa-calendar-check"></i>
+                    Обсудить индивидуально
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Контакты -->
+<section id="contacts" class="contacts">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Контакты</h2>
+            <p class="section-subtitle">Готовы обсудить ваш проект? Свяжитесь с нами!</p>
+        </div>
+        <div class="contacts-content">
+            <div class="contacts-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Телефон</h3>
+                    <p><a href="tel:+79204347038">+7 920 434 70 38</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:pas_comp@mail.ru">pas_comp@mail.ru</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <h3>Telegram</h3>
+                    <p><a href="https://t.me/PAS_comp" target="_blank">@PAS_comp</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-vk"></i>
+                    </div>
+                    <h3>ВКонтакте</h3>
+                    <p><a href="https://vk.com/aweryn03" target="_blank">aweryn03</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3>GitHub</h3>
+                    <p><a href="https://github.com/PetrenLine" target="_blank">PetrenLine</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Быстрая связь</h3>
+                    <p>Ответим в течение 1 часа</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Футер (Footer) -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">PAS</div>
+                        <div>
+                            <h3>PAScompany</h3>
+                            <p>Молодая команда разработчиков</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Создаём инновационные решения, которые выделяют ваш бизнес. Готовы к любым смелым идеям!</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Компания</h4>
+                        <a href="#about">О нас</a>
+                        <a href="#team">Команда</a>
+                        <a href="#services">Услуги</a>
+                        <a href="templates/templates.html">Шаблоны</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Контакты</h4>
+                        <a href="#contacts">Связаться с нами</a>
+                        <a href="tel:+79204347038">+7 920 434 70 38</a>
+                        <a href="mailto:pas_comp@mail.ru">pas_comp@mail.ru</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-text">
+                    <p>&copy; 2024 PAScompany. Молодая и амбициозная команда.</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://vk.com/aweryn03" target="_blank" title="ВКонтакте" class="social-link">
+                        <i class="fab fa-vk"></i>
+                    </a>
+                    <a href="https://github.com/PetrenLine" target="_blank" title="GitHub" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://t.me/PAS_comp" target="_blank" title="Telegram" class="social-link">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+    // Добавляем стиль для акцентной кнопки
+    const style = document.createElement('style');
+    style.textContent = `
+            .cta-button.accent {
+                background: var(--gradient-4);
+                color: var(--primary-white);
+                border: none;
+                text-decoration: none;
+            }
+
+            .cta-button.accent:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-lg);
+                background: var(--gradient-4);
+            }
+
+            .ideas-buttons {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+        `;
+    document.head.appendChild(style);
+</script>
+</body>
+</html>

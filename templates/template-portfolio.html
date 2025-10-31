@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceCraft - Дизайн интерьеров</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --interior-primary: #2A9D8F;
+            --interior-secondary: #264653;
+            --interior-accent: #E9C46A;
+            --interior-warm: #F4A261;
+            --interior-dark: #1E1E1E;
+            --interior-light: #F8F9FA;
+            --interior-gradient: linear-gradient(135deg, #2A9D8F 0%, #264653 100%);
+            --interior-accent-gradient: linear-gradient(135deg, #E9C46A 0%, #F4A261 100%);
+        }
+
+        /* Стили для header дизайнера интерьеров */
+        .interior-header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(42, 157, 143, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .interior-header .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .interior-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .interior-logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--interior-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.3);
+        }
+
+        .interior-logo h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--interior-secondary);
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .interior-logo-subtitle {
+            font-size: 0.85rem;
+            color: var(--interior-primary);
+            margin: 0;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .interior-nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .interior-nav-link {
+            text-decoration: none;
+            color: var(--interior-secondary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+            font-size: 1rem;
+        }
+
+        .interior-nav-link:hover,
+        .interior-nav-link.active {
+            color: var(--interior-primary);
+        }
+
+        .interior-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--interior-accent);
+            transition: width 0.3s ease;
+        }
+
+        .interior-nav-link:hover::after,
+        .interior-nav-link.active::after {
+            width: 100%;
+        }
+
+        .interior-cta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .consult-button {
+            background: var(--interior-accent);
+            color: var(--interior-secondary);
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(233, 196, 106, 0.3);
+        }
+
+        .consult-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(233, 196, 106, 0.4);
+            background: var(--interior-warm);
+        }
+
+        /* Основной контент портфолио */
+        .interior-hero {
+            background: linear-gradient(135deg, #264653 0%, #2A9D8F 50%, #E9C46A 100%);
+            padding: 180px 0 100px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interior-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                    radial-gradient(circle at 20% 80%, rgba(233, 196, 106, 0.2) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(42, 157, 143, 0.1) 0%, transparent 50%);
+        }
+
+        .interior-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .interior-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 14px 28px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .interior-hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .interior-hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .interior-hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .interior-cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .interior-cta-button.primary {
+            background: var(--interior-accent);
+            color: var(--interior-secondary);
+        }
+
+        .interior-cta-button.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(233, 196, 106, 0.4);
+        }
+
+        .interior-cta-button.secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .interior-cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
+        /* Секции портфолио */
+        .interior-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .interior-section.light {
+            background: var(--interior-light);
+        }
+
+        .interior-section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .interior-section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--interior-secondary);
+            position: relative;
+        }
+
+        .interior-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--interior-accent);
+            border-radius: 2px;
+        }
+
+        .interior-section-subtitle {
+            font-size: 1.2rem;
+            color: var(--interior-primary);
+            max-width: 700px;
+            margin: 2rem auto 0;
+            line-height: 1.6;
+        }
+
+        /* Галерея проектов */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(42, 157, 143, 0.2);
+        }
+
+        .project-preview {
+            height: 280px;
+            background: linear-gradient(135deg, var(--interior-primary), var(--interior-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                    linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.1) 50%, transparent 55%);
+            animation: architectural-shine 4s infinite;
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-category {
+            color: var(--interior-accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--interior-secondary);
+            line-height: 1.3;
+        }
+
+        .project-description {
+            color: #6B7280;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-features {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .feature-tag {
+            background: var(--interior-light);
+            color: var(--interior-primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(42, 157, 143, 0.2);
+        }
+
+        /* Фильтры */
+        .interior-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .style-filter {
+            background: white;
+            border: 2px solid var(--interior-primary);
+            color: var(--interior-primary);
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .style-filter.active,
+        .style-filter:hover {
+            background: var(--interior-gradient);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(42, 157, 143, 0.3);
+        }
+
+        /* О дизайнере */
+        .designer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .designer-image {
+            text-align: center;
+            position: relative;
+        }
+
+        .designer-photo {
+            width: 350px;
+            height: 450px;
+            background: var(--interior-gradient);
+            border-radius: 25px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+            font-weight: 700;
+            box-shadow: 0 20px 50px rgba(42, 157, 143, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .designer-photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                    linear-gradient(135deg, transparent 40%, rgba(233, 196, 106, 0.2) 50%, transparent 60%);
+            animation: designer-shine 5s infinite;
+        }
+
+        .designer-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .designer-stat {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--interior-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Услуги */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--interior-accent-gradient);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(42, 157, 143, 0.15);
+        }
+
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 2rem;
+            background: var(--interior-light);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--interior-primary);
+            font-size: 2.5rem;
+            border: 3px solid var(--interior-accent);
+        }
+
+        /* Контакты */
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(42, 157, 143, 0.2);
+        }
+
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: var(--interior-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 10px 25px rgba(42, 157, 143, 0.3);
+        }
+
+        /* Футер */
+        .interior-footer {
+            background: var(--interior-secondary);
+            color: white;
+            padding: 5rem 0 3rem;
+        }
+
+        .back-to-pas {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .back-to-pas a {
+            color: var(--interior-accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .back-to-pas a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes architectural-shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        @keyframes designer-shine {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        @media (max-width: 768px) {
+            .interior-header .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .interior-nav {
+                gap: 1.5rem;
+            }
+
+            .interior-hero-title {
+                font-size: 2.8rem;
+            }
+
+            .designer-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .designer-photo {
+                width: 280px;
+                height: 350px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header дизайнера интерьеров -->
+<header class="interior-header">
+    <div class="container">
+        <div class="header-content">
+            <a href="#" class="interior-logo">
+                <div class="interior-logo-icon">SC</div>
+                <div>
+                    <h1>SpaceCraft</h1>
+                    <p class="interior-logo-subtitle">ДИЗАЙН ИНТЕРЬЕРОВ</p>
+                </div>
+            </a>
+            <nav class="interior-nav">
+                <a href="#projects" class="interior-nav-link active">Проекты</a>
+                <a href="#about" class="interior-nav-link">Обо мне</a>
+                <a href="#services" class="interior-nav-link">Услуги</a>
+                <a href="#process" class="interior-nav-link">Процесс</a>
+                <a href="#contact" class="interior-nav-link">Контакты</a>
+            </nav>
+            <div class="interior-cta">
+                <a href="#contact" class="consult-button">
+                    <i class="fas fa-pencil-ruler"></i>
+                    Консультация
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hero секция -->
+<section class="interior-hero">
+    <div class="container">
+        <div class="interior-hero-content">
+            <div class="interior-hero-badge">
+                <i class="fas fa-award"></i>
+                🏆 Победитель International Design Awards 2023
+            </div>
+            <h1 class="interior-hero-title">
+                Превращаю пространства
+                <span style="color: var(--interior-accent);">в произведения искусства</span>
+            </h1>
+            <p class="interior-hero-subtitle">
+                Создаю интерьеры, которые отражают вашу индивидуальность и дарят
+                ощущение гармонии. Каждый проект — это уникальная история,
+                воплощенная в деталях.
+            </p>
+            <div class="interior-hero-buttons">
+                <a href="#projects" class="interior-cta-button primary">
+                    <i class="fas fa-eye"></i>
+                    Смотреть проекты
+                </a>
+                <a href="#contact" class="interior-cta-button secondary">
+                    <i class="fas fa-video"></i>
+                    Виртуальный тур
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Проекты -->
+<section id="projects" class="interior-section light">
+    <div class="container">
+        <div class="interior-section-header">
+            <h2 class="interior-section-title">Мои проекты</h2>
+            <p class="interior-section-subtitle">
+                Подборка реализованных интерьеров в различных стилях и для разных пространств
+            </p>
+        </div>
+
+        <div class="interior-filters">
+            <button class="style-filter active">Все проекты</button>
+            <button class="style-filter">Современный</button>
+            <button class="style-filter">Лофт</button>
+            <button class="style-filter">Скандинавский</button>
+            <button class="style-filter">Минимализм</button>
+            <button class="style-filter">Классика</button>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-preview">
+                    <i class="fas fa-couch"></i>
+                </div>
+                <div class="project-info">
+                    <div class="project-category">АПАРТАМЕНТЫ • СОВРЕМЕННЫЙ СТИЛЬ</div>
+                    <h3 class="project-title">Лофт в центре Москвы</h3>
+                    <p class="project-description">
+                        Проект апартаментов в стиле современный лофт с индустриальными
+                        элементами и smart-технологиями для молодой семьи.
+                    </p>
+                    <div class="project-features">
+                        <span class="feature-tag">120 м²</span>
+                        <span class="feature-tag">Smart-home</span>
+                        <span class="feature-tag">Экостиль</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="project-info">
+                    <div class="project-category">ЗАГОРОДНЫЙ ДОМ • МИНИМАЛИЗМ</div>
+                    <h3 class="project-title">Загородная вилла у озера</h3>
+                    <p class="project-description">
+                        Минималистичный дизайн загородного дома с панорамными окнами,
+                        натуральными материалами и интеграцией в природный ландшафт.
+                    </p>
+                    <div class="project-features">
+                        <span class="feature-tag">280 м²</span>
+                        <span class="feature-tag">Панорамные окна</span>
+                        <span class="feature-tag">Натуральные материалы</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="project-info">
+                    <div class="project-category">ПЕНТХАУС • ЛЮКС</div>
+                    <h3 class="project-title">Пентхаус с террасой</h3>
+                    <p class="project-description">
+                        Роскошный пентхаус в классическом стиле с камином,
+                        винным погребом и террасой с видом на город.
+                    </p>
+                    <div class="project-features">
+                        <span class="feature-tag">200 м²</span>
+                        <span class="feature-tag">Терраса</span>
+                        <span class="feature-tag">Камин</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="project-info">
+                    <div class="project-category">РЕСТОРАН • АВТОРСКИЙ ДИЗАЙН</div>
+                    <h3 class="project-title">Ресторан "Ботаника"</h3>
+                    <p class="project-description">
+                        Авторский дизайн ресторана с живыми растениями,
+                        эко-материалами и зонированием пространства.
+                    </p>
+                    <div class="project-features">
+                        <span class="feature-tag">180 м²</span>
+                        <span class="feature-tag">Живые растения</span>
+                        <span class="feature-tag">Эко-материалы</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="project-info">
+                    <div class="project-category">ОФИС • СКАНДИНАВСКИЙ СТИЛЬ</div>
+                    <h3 class="project-title">IT-компания "ТехноЛаб"</h3>
+                    <p class="project-description">
+                        Проект офисного пространства в скандинавском стиле
+                        с зонами для работы, отдыха и мозговых штурмов.
+                    </p>
+                    <div class="project-features">
+                        <span class="feature-tag">350 м²</span>
+                        <span class="feature-tag">Open-space</span>
+                        <span class="feature-tag">Зона отдыха</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <i class="fas fa-bed"></i>
+                </div>
+                <div class="project-info">
+                    <div class="project-category">КВАРТИРА • НЕОКЛАССИКА</div>
+                    <h3 class="project-title">Трехкомнатная квартира</h3>
+                    <p class="project-description">
+                        Элегантный дизайн в стиле неоклассика с лепниной,
+                        паркетом и авторской мебелью для семьи с детьми.
+                    </p>
+                    <div class="project-features">
+                        <span class="feature-tag">85 м²</span>
+                        <span class="feature-tag">Лепнина</span>
+                        <span class="feature-tag">Паркет</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- О дизайнере -->
+<section id="about" class="interior-section">
+    <div class="container">
+        <div class="designer-grid">
+            <div class="designer-image">
+                <div class="designer-photo">
+                    АД
+                </div>
+                <div class="designer-stats">
+                    <div class="designer-stat">
+                        <div class="stat-number">8+</div>
+                        <div>лет опыта</div>
+                    </div>
+                    <div class="designer-stat">
+                        <div class="stat-number">120+</div>
+                        <div>реализованных проектов</div>
+                    </div>
+                </div>
+            </div>
+            <div class="designer-content">
+                <div class="interior-section-header" style="text-align: left; margin-bottom: 3rem;">
+                    <h2 class="interior-section-title">Анна Дмитриева</h2>
+                    <p class="interior-section-subtitle" style="margin: 1.5rem 0 0;">
+                        Дизайнер интерьеров с архитектурным образованием
+                    </p>
+                </div>
+                <p style="margin-bottom: 2rem; line-height: 1.7; color: #6B7280; font-size: 1.1rem;">
+                    Верю, что хороший дизайн — это не только про эстетику, но и про функциональность,
+                    комфорт и энергетику пространства. Каждый проект начинается с глубокого изучения
+                    потребностей клиента и заканчивается полным сопровождением до реализации.
+                </p>
+                <p style="margin-bottom: 3rem; line-height: 1.7; color: #6B7280; font-size: 1.1rem;">
+                    Образование: МАРХИ (Московский архитектурный институт), стажировки в Милане и
+                    Копенгагене. Участник международных выставок и конкурсов дизайна.
+                </p>
+
+                <div class="services-grid" style="grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="service-card" style="padding: 1.5rem;">
+                        <div class="service-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                            <i class="fas fa-drafting-compass"></i>
+                        </div>
+                        <h4>3D Визуализация</h4>
+                    </div>
+                    <div class="service-card" style="padding: 1.5rem;">
+                        <div class="service-icon" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h4>Авторский надзор</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Услуги -->
+<section id="services" class="interior-section light">
+    <div class="container">
+        <div class="interior-section-header">
+            <h2 class="interior-section-title">Услуги</h2>
+            <p class="interior-section-subtitle">
+                Полный цикл услуг по созданию интерьера вашей мечты
+            </p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-pencil-ruler"></i>
+                </div>
+                <h3>Дизайн-проект</h3>
+                <p>Разработка полного дизайн-проекта с 3D визуализацией, чертежами и спецификациями</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-vr-cardboard"></i>
+                </div>
+                <h3>3D Визуализация</h3>
+                <p>Фотореалистичная 3D визуализация будущего интерьера с возможностью VR-тура</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-hard-hat"></i>
+                </div>
+                <h3>Авторский надзор</h3>
+                <p>Контроль за реализацией проекта на всех этапах ремонтных работ</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Контакты -->
+<section id="contact" class="interior-section">
+    <div class="container">
+        <div class="interior-section-header">
+            <h2 class="interior-section-title">Начнем ваш проект</h2>
+            <p class="interior-section-subtitle">
+                Готова создать для вас интерьер, в котором захочется остаться навсегда
+            </p>
+        </div>
+        <div class="contacts-grid">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <p>hello@spacecraft.design</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Телефон</h3>
+                <p>+7 (495) 123-45-67</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Студия</h3>
+                <p>Москва, ул. Большая Дмитровка, 32</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>График</h3>
+                <p>Пн-Пт: 10:00-19:00<br>Сб: по записи</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Футер -->
+<footer class="interior-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="interior-logo">
+                        <div class="interior-logo-icon">SC</div>
+                        <div>
+                            <h3>SpaceCraft</h3>
+                            <p>ДИЗАЙН ИНТЕРЬЕРОВ</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Создаю пространства, в которые хочется возвращаться
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Навигация</h4>
+                        <a href="#projects">Проекты</a>
+                        <a href="#about">Обо мне</a>
+                        <a href="#services">Услуги</a>
+                        <a href="#contact">Контакты</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Соцсети</h4>
+                        <a href="#">Instagram</a>
+                        <a href="#">Pinterest</a>
+                        <a href="#">Houzz</a>
+                        <a href="#">Behance</a>
+                    </div>
+                </div>
+            </div>
+            <div class="back-to-pas">
+                <p>Это демонстрация шаблона портфолио дизайнера интерьеров от <a href="../index.html">PAScompany</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
